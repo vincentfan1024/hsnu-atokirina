@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Aquarium
+		</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				background: #000;
+			}
+			
+			canvas {
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: #000;
+			}
+			
+			div#soft-edge {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 1024px;
+				height: 768px;
+				z-index: 999;
+				box-shadow: 0 0 50px black inset, 0 0 25px black inset, 0 0 18px black inset, 0 0 9px inset;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<canvas id="canvasAquarium" width="1024" height="768"></canvas>
+			<div id="soft-edge"></div>
+		</div>
+	</body>
+</html>

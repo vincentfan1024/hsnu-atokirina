@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Monitor
+		</title>
+		<style>
+			body{
+				background: #000;
+				color: #888;
+				font-family: "微軟正黑體";
+				-moz-user-select: none;
+				-webkit-user-select: none;
+				margin-bottom: 100px;
+				/*overflow: hidden;*/
+			}
+			
+			div#panel{
+				width: 500px;
+			}
+
+			hr, input{
+				opacity: 0.3;
+			}
+			
+			hr{
+				visibility: hidden;
+			}
+			
+			span.label{
+				display: inline-block;
+				width: 10em;
+			}
+			
+			input.slider{
+				width: 300px;
+			}
+			
+			canvas{
+				background: #151033;
+			}
+			
+			img{
+				opacity: 0.3;
+			}
+		</style>
+		<script src="zig.js"></script>
+		<script src="util.js"></script>
+		<script src="main.js"></script>
+		<script src="kinect.js"></script>
+	</head>
+	<body>
+		<!-- <video id="video" width="1920" height="1080" style="display:none" autoplay /> -->
+		<canvas id="monitor"></canvas><!--Ministry of National Defense, MND-->
+		<div id="panel">
+			<input id="start" type="button" value="Start">
+			<span id="rateDisplay">
+				frame rate
+			</span>
+			<hr />
+			<span class="label">校正</span>
+			<input id="oCal" type="button" value="O">
+			<input id="xCal" type="button" value="X">
+			<input id="yCal" type="button" value="Y">
+			<input id="zCal" type="button" value="Z"><br />
+			<hr />
+			<span class="label">X 平移</span>
+			<input id="shiftX" class="slider" type="range" min=-1000 max=1000 step=0.00001><br />
+			<span class="label">Y 平移</span>
+			<input id="shiftY" class="slider" type="range" vmin=-1000 max=1000 step=0.00001><br />
+			<span class="label">X 縮放</span>
+			<input id="scaleX" class="slider" type="range" min=0 max=2 step=0.00001><br />
+			<span class="label">Y 縮放</span>
+			<input id="scaleY" class="slider" type="range" min=0 max=2 step=0.00001><br />
+			<hr/>
+			<span class="label">神秘平滑常數</span>
+			<input id="smoothC" class="slider" type="range" min=0 max=1 step=0.00001><br />
+			<hr/>
+			<span class="label">AA 排斥 (~1/r)</span>
+			<input id="repelAA" class="slider" type="range" min=0 max=100 step=0.00001><br />
+			<span class="label">AJ 吸引 (~1/r)</span>
+			<input id="attractAJ" class="slider" type="range" min=0 max=100 step=0.00001><br />
+			<span class="label">AH 排斥 (~1/r)</span>
+			<input id="repelAH" class="slider" type="range" min=0 max=100 step=0.00001><br />
+			<span class="label">排斥半徑</span>
+			<input id="repelR" class="slider" type="range" min=0 max=100 step=0.00001><br />
+			<span class="label">F 極限</span>
+			<input id="fMax" class="slider" type="range" min=0 max=100 step=0.00001><br />
+			<hr/>
+			<span class="label">風阻尼</span>
+			<input id="windDamp" class="slider" type="range" min=0 max=2 step=0.00001><br />
+			<hr/>
+			<span class="label">擺動機率 (頻率)</span>
+			<input id="flapP" class="slider" type="range" min=0 max=0.02 step=0.00001><br />
+			<span class="label">擺動底速</span>
+			<input id="flapV" class="slider" type="range" min=0 max=5 step=0.00001><br />
+			<hr/>
+			<span class="label">降落速度</span>
+			<input id="fallV" class="slider" type="range" min=0 max=0.3 step=0.00001><br />
+			<hr/>
+			<!--
+			範圍限制指數:
+			<input type="text" value=2 onchange="forces_p5=parseInt(this.value);"><br>
+			隨機震盪範圍:
+			<input type="text" value=0.0001 onchange="forces_p6=this.value*1;"><br>
+			-->
+			<span class="label">步長</span>
+			<input id="step" class="slider" type="range" min=1 max=20 step=1 style="width: 300px;"><br>
+			<!-- <input type="button" value="存成圖片" onclick="window.open(canvas.toDataURL());"> -->
+		</div>
+	</body>
+</html>
